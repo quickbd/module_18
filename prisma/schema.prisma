@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model category {
+  id             BigInt          @id @default(autoincrement())
+  parentId       BigInt?
+  title          String?         @db.VarChar(75)
+  metaTitle      String?         @db.VarChar(100)
+  slug           String?         @db.VarChar(100)
+  content        String?         @db.Text
+  category       category?       @relation("categoryTocategory", fields: [parentId], references: [id], onDelete: Restrict, map: "FK_category")
+  other_category category[]      @relation("categoryTocategory")
+  post_category  post_category[]
+
+  @@index([parentId], map: "FK_category")
+}
+
+model post {
+  id            BigInt          @id @default(autoincrement())
+  authorId      BigInt?
+  parentId      BigInt?
+  title         String?         @db.VarChar(75)
+  metaTitle     String?         @db.VarChar(100)
+  slug          String?         @db.VarChar(100)
+  summary       String?         @db.TinyText
+  published     Int?            @db.TinyInt
+  createdAt     DateTime?       @db.DateTime(0)
+  updatedAt     DateTime?       @db.DateTime(0)
+  content       String?         @db.Text
+  user          user?           @relation(fields: [authorId], references: [id], onDelete: Restrict, map: "FK_post")
+  post          post?           @relation("postTopost", fields: [parentId], references: [id], onDelete: Restrict, map: "FK_post_parentid")
+  other_post    post[]          @relation("postTopost")
+  post_category post_category[]
+  post_comment  post_comment[]
+  post_meta     post_meta[]
+  post_tag      post_tag[]
+
+  @@index([authorId], map: "FK_post")
+  @@index([parentId], map: "FK_post_parentid")
+}
+
+model post_category {
+  id         BigInt    @id @default(autoincrement())
+  postId     BigInt?
+  categoryId BigInt?
+  post       post?     @relation(fields: [postId], references: [id], onDelete: Restrict, map: "FK_post_category")
+  category   category? @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_post_category_category")
+
+  @@index([postId], map: "FK_post_category")
+  @@index([categoryId], map: "FK_post_category_category")
+}
+
+model post_comment {
+  id                 BigInt         @id @default(autoincrement())
+  postId             BigInt?
+  parentId           BigInt?
+  title              String?        @db.VarChar(100)
+  published          Boolean?
+  createdAt          DateTime?      @db.DateTime(0)
+  publishedAt        DateTime?      @db.DateTime(0)
+  content            String?        @db.Text
+  post               post?          @relation(fields: [postId], references: [id], onDelete: Restrict, map: "FK_post_comment")
+  post_comment       post_comment?  @relation("post_commentTopost_comment", fields: [parentId], references: [id], onDelete: Restrict, map: "FK_post_comment_parent")
+  other_post_comment post_comment[] @relation("post_commentTopost_comment")
+
+  @@index([postId], map: "FK_post_comment")
+  @@index([parentId], map: "FK_post_comment_parent")
+}
+
+model post_meta {
+  id      BigInt  @id @default(autoincrement())
+  postId  BigInt?
+  key     String? @db.VarChar(50)
+  content String? @db.Text
+  post    post?   @relation(fields: [postId], references: [id], onDelete: Restrict, map: "FK_post_meta")
+
+  @@index([postId], map: "FK_post_meta")
+}
+
+model post_tag {
+  id     BigInt  @id @default(autoincrement())
+  postId BigInt?
+  tagId  BigInt?
+  post   post?   @relation(fields: [postId], references: [id], onDelete: Restrict, map: "FK_post_tag")
+  tag    tag?    @relation(fields: [tagId], references: [id], onDelete: Restrict, map: "FK_post_tag_tag")
+
+  @@index([postId], map: "FK_post_tag")
+  @@index([tagId], map: "FK_post_tag_tag")
+}
+
+model tag {
+  id        BigInt     @id @default(autoincrement())
+  title     String?    @db.VarChar(75)
+  metaTitle String?    @db.VarChar(100)
+  slug      String?    @db.VarChar(100)
+  content   String?    @db.Text
+  post_tag  post_tag[]
+}
+
+model user {
+  id           BigInt    @id @default(autoincrement())
+  firstName    String?   @db.VarChar(50)
+  middleName   String?   @db.VarChar(50)
+  lastName     String?   @db.VarChar(50)
+  mobile       String?   @db.VarChar(15)
+  email        String?   @db.VarChar(50)
+  passwordHash String?   @db.VarChar(32)
+  registered   DateTime? @db.DateTime(0)
+  lastlogin    DateTime? @db.DateTime(0)
+  intro        String?   @db.TinyText
+  profile      String?   @db.Text
+  post         post[]
+}
