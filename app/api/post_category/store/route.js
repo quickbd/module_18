@@ -5,22 +5,13 @@ export async function POST(req, res) {
   BigInt.prototype.toJSON = function () {
     return this.toString();
   };
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get("id");
+
   const reqData = await req.json();
+  console.log(reqData);
   const prisma = new PrismaClient();
-  console.log(id);
   try {
-    let result = await prisma.post.update({
-      where: { id: id },
-      data: {
-        firstName: reqData.firstName,
-        lastName: reqData.lastName,
-        mobile: reqData.mobile,
-        email: reqData.mobile,
-        passwordHash: reqData.passwordHash,
-        profile: reqData.profile,
-      },
+    let result = await prisma.post_category.create({
+      data: reqData,
     });
 
     return NextResponse.json({ status: "success", result });

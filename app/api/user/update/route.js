@@ -11,7 +11,7 @@ export async function POST(req, res) {
   const prisma = new PrismaClient();
   console.log(id);
   try {
-    let result = await prisma.post.update({
+    let result = await prisma.user.update({
       where: { id: id },
       data: {
         firstName: reqData.firstName,

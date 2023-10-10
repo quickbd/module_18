@@ -8,7 +8,7 @@ export async function GET(req, res) {
 
   const prisma = new PrismaClient();
   try {
-    let result = await prisma.post.findMany({});
+    let result = await prisma.tag.findMany({});
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {

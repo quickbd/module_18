@@ -1,16 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function DELETE(req, res) {
   BigInt.prototype.toJSON = function () {
     return this.toString();
   };
-
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
   // const reqData = await req.json();
   const prisma = new PrismaClient();
+
   try {
-    let result = await prisma.brands.create({
-      data: { brandName: "sss", brandImg: "image.jpg" },
+    let result = await prisma.tag.delete({
+      where: { id: id },
     });
 
     return NextResponse.json({ status: "success", result });

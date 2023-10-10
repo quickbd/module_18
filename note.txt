@@ -1,0 +1,105 @@
+Assignment ১৮ (Prisma Query Writing Part 01)
+In this assignment, we are giving you a picture of a database design diagram. After looking at this database design, you need to create some CRUD operations with Prisma. MySQL should be used as the database. 
+
+Image link: https://res.cloudinary.com/amitjs/image/upload/v1696747672/Ostad/tutorials24x7-blog-database_wp92sp.png
+
+
+
+
+Requirements:
+Must use NEXT-JS
+1. CRUD operation using user model.
+
+Data store/create:(POST) localhost:3000/api/user/store
+sample data: {
+    "firstName": "Hasanat",
+    "lastName":"Zamil",
+    "mobile":"01916112075",
+    "email":"admin@admin.com",
+    "passwordHash":"21342341234",
+    "profile":"my profile"
+}
+
+View list:(GET) localhost:3000/api/user/
+Data delete:(POST) localhost:3000/api/user/delete?id=1
+Data update:(POST) localhost:3000/api/user/update?id=2
+Sample data: {
+    "firstName": "Hasanat",
+    "lastName":"Zamil",
+    "mobile":"01916110000",
+    "email":"hzamil@gmail.com",
+    "passwordHash":"21342341234",
+    "profile":"my profile"
+}
+
+
+2. CRUD operation using post model.
+
+Data store/create:(POST) localhost:3000/api/post/store
+sample data: {
+    "authorId": "1",
+    "parentId":"0",
+    "title":"test",
+    "metaTitle":"metaTitle",
+    "slug":"slug-slug",
+    "summary":"my summary",
+    "published":"1",
+    "content":"my content",
+}
+
+View list:(GET) localhost:3000/api/post/
+Data delete:(POST) localhost:3000/api/post/delete?id=1
+Data update:(POST) localhost:3000/api/post/update?id=2
+ 
+
+3. CRUD operation using post_comment model.
+
+Data store/create:(POST) localhost:3000/api/post_comment/store
+View list:(GET) localhost:3000/api/post_comment/
+Data delete:(POST) localhost:3000/api/post_comment/delete?id=1
+Data update:(POST) localhost:3000/api/post_comment/update?id=2
+
+
+
+4.CRUD operation using tag model.
+
+Data store/create:(POST) localhost:3000/api/tag/store
+View list:(GET) localhost:3000/api/tag/
+Data delete:(POST) localhost:3000/api/tag/delete?id=1
+Data update:(POST) localhost:3000/api/tag/update?id=2
+
+
+
+5.CRUD operation using post_tag model.
+
+Data store/create:(POST) localhost:3000/api/post_tag/store
+View list:(GET) localhost:3000/api/post_tag/
+Data delete:(POST) localhost:3000/api/post_tag/delete?id=1
+Data update:(POST) localhost:3000/api/post_tag/update?id=2
+
+
+6.CRUD operation using post_meta model.
+
+Data store/create:(POST) localhost:3000/api/post_meta/store
+View list:(GET) localhost:3000/api/post_meta/
+Data delete:(POST) localhost:3000/api/post_meta/delete?id=1
+Data update:(POST) localhost:3000/api/post_meta/update?id=2
+
+
+7.CRUD operation using category model.
+
+Data store/create:(POST) localhost:3000/api/category/store
+View list:(GET) localhost:3000/api/category/
+Data delete:(POST) localhost:3000/api/category/delete?id=1
+Data update:(POST) localhost:3000/api/category/update?id=2
+
+
+8.CRUD operation using post_category model.
+
+Data store/create:(POST) localhost:3000/api/post_category/store
+View list:(GET) localhost:3000/api/post_category/
+Data delete:(POST) localhost:3000/api/post_category/delete?id=1
+Data update:(POST) localhost:3000/api/post_category/update?id=2
+
+
+

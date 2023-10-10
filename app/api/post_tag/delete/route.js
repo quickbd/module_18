@@ -1,26 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function POST(req, res) {
+export async function DELETE(req, res) {
   BigInt.prototype.toJSON = function () {
     return this.toString();
   };
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
-  const reqData = await req.json();
+  // const reqData = await req.json();
   const prisma = new PrismaClient();
-  console.log(id);
+
   try {
-    let result = await prisma.post.update({
+    let result = await prisma.post_tag.delete({
       where: { id: id },
-      data: {
-        firstName: reqData.firstName,
-        lastName: reqData.lastName,
-        mobile: reqData.mobile,
-        email: reqData.mobile,
-        passwordHash: reqData.passwordHash,
-        profile: reqData.profile,
-      },
     });
 
     return NextResponse.json({ status: "success", result });
