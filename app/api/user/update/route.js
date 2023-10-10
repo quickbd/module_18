@@ -28,3 +28,13 @@ export async function POST(req, res) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
+
+// Data update:(POST) localhost:3000/api/user/update?id=2
+// Sample data: {
+//     "firstName": "Hasanat",
+//     "lastName":"Zamil",
+//     "mobile":"01916110000",
+//     "email":"hzamil@gmail.com",
+//     "passwordHash":"21342341234",
+//     "profile":"my profile"
+// }

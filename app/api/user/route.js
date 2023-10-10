@@ -15,3 +15,19 @@ export async function GET(req, res) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
+
+
+1. CRUD operation using user model.
+
+Data store/create:(POST) localhost:3000/api/user/store
+sample data: {
+    "firstName": "Hasanat",
+    "lastName":"Zamil",
+    "mobile":"01916112075",
+    "email":"admin@admin.com",
+    "passwordHash":"21342341234",
+    "profile":"my profile"
+}
+
+//View list:(GET) localhost:3000/api/user/
+
