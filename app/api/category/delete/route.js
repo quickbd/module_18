@@ -1,14 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function DELETE(req, res) {
   BigInt.prototype.toJSON = function () {
     return this.toString();
   };
-
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  // const reqData = await req.json();
   const prisma = new PrismaClient();
+
   try {
-    let result = await prisma.post_category.findMany({});
+    let result = await prisma.category.delete({
+      where: { id: id },
+    });
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {
@@ -16,4 +21,4 @@ export async function GET(req, res) {
   }
 }
 
-//View list:(GET) localhost:3000/api/post_category/
+//Data delete:(DELETE) localhost:3000/api/category/delete?id=1

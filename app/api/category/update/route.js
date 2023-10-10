@@ -11,7 +11,7 @@ export async function POST(req, res) {
   const prisma = new PrismaClient();
   console.log(id);
   try {
-    let result = await prisma.post_tag.update({
+    let result = await prisma.category.update({
       where: { id: id },
       data: {
         firstName: reqData.firstName,
@@ -29,5 +29,4 @@ export async function POST(req, res) {
   }
 }
 
-//Data update:(POST) localhost:3000/api/post_tag/update?id=2
-//data:{parameters}
+//Data update:(POST) localhost:3000/api/category/update?id=2

@@ -28,3 +28,6 @@ export async function POST(req, res) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
+
+//Data update:(POST) localhost:3000/api/post_meta/update?id=2
+//data:{object}

@@ -8,7 +8,7 @@ export async function GET(req, res) {
 
   const prisma = new PrismaClient();
   try {
-    let result = await prisma.post_category.findMany({});
+    let result = await prisma.category.findMany({});
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {
@@ -16,4 +16,4 @@ export async function GET(req, res) {
   }
 }
 
-//View list:(GET) localhost:3000/api/post_category/
+//View list:(GET) localhost:3000/api/category/

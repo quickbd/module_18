@@ -19,3 +19,5 @@ export async function POST(req, res) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
+//Data store/create:(POST) localhost:3000/api/post_meta/store
+// data:{object}

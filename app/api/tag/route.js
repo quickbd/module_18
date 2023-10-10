@@ -15,3 +15,5 @@ export async function GET(req, res) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
+
+//View list:(GET) localhost:3000/api/tag/
