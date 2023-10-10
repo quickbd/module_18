@@ -20,3 +20,5 @@ export async function DELETE(req, res) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
+
+//Data delete:(DELETE) localhost:3000/api/post/delete?id=1

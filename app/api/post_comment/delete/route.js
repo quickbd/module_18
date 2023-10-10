@@ -11,7 +11,7 @@ export async function DELETE(req, res) {
   const prisma = new PrismaClient();
 
   try {
-    let result = await prisma.user.delete({
+    let result = await prisma.post_comment.delete({
       where: { id: id },
     });
 
