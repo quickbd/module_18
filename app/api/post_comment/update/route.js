@@ -14,12 +14,12 @@ export async function POST(req, res) {
     let result = await prisma.post_comment.update({
       where: { id: id },
       data: {
-        firstName: reqData.firstName,
-        lastName: reqData.lastName,
-        mobile: reqData.mobile,
+        postId: reqData.postId,
+        parentId: reqData.parentId,
+        published: reqData.published,
         email: reqData.mobile,
-        passwordHash: reqData.passwordHash,
-        profile: reqData.profile,
+        publishedAt: reqData.publishedAt,
+        content: reqData.content,
       },
     });
 

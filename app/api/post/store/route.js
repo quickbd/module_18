@@ -7,7 +7,7 @@ export async function POST(req, res) {
   };
 
   const reqData = await req.json();
-  console.log(reqData);
+
   const prisma = new PrismaClient();
   try {
     let result = await prisma.post.create({

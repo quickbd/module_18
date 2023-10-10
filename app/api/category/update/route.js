@@ -14,12 +14,11 @@ export async function POST(req, res) {
     let result = await prisma.category.update({
       where: { id: id },
       data: {
-        firstName: reqData.firstName,
-        lastName: reqData.lastName,
-        mobile: reqData.mobile,
-        email: reqData.mobile,
-        passwordHash: reqData.passwordHash,
-        profile: reqData.profile,
+        parentId: reqData.parentId,
+        title: reqData.title,
+        metaTitle: reqData.metaTitle,
+        slug: reqData.slug,
+        content: reqData.content,
       },
     });
 

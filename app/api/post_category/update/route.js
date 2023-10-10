@@ -14,12 +14,8 @@ export async function POST(req, res) {
     let result = await prisma.post_category.update({
       where: { id: id },
       data: {
-        firstName: reqData.firstName,
-        lastName: reqData.lastName,
-        mobile: reqData.mobile,
-        email: reqData.mobile,
-        passwordHash: reqData.passwordHash,
-        profile: reqData.profile,
+        postId: reqData.postId,
+        categoryId: reqData.categoryId,
       },
     });
 

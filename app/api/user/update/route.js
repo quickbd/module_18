@@ -17,7 +17,7 @@ export async function POST(req, res) {
         firstName: reqData.firstName,
         lastName: reqData.lastName,
         mobile: reqData.mobile,
-        email: reqData.mobile,
+        email: reqData.email,
         passwordHash: reqData.passwordHash,
         profile: reqData.profile,
       },
