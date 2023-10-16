@@ -1,12 +1,14 @@
 import { PrismaClient } from "@prisma/client";
+import moment from "moment";
 import { NextResponse } from "next/server";
-
 export async function POST(req, res) {
   BigInt.prototype.toJSON = function () {
     return this.toString();
   };
 
   const reqData = await req.json();
+
+  reqData.registeredAt = moment();
   console.log(reqData);
   const prisma = new PrismaClient();
   try {
@@ -21,11 +23,4 @@ export async function POST(req, res) {
 }
 
 // Data store/create:(POST) localhost:3000/api/user/store
-// sample data: {
-//     "firstName": "Hasanat",
-//     "lastName":"Zamil",
-//     "mobile":"01916112075",
-//     "email":"admin@admin.com",
-//     "passwordHash":"21342341234",
-//     "profile":"my profile"
-// }
+// sample data:  object

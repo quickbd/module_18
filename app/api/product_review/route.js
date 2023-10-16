@@ -8,13 +8,11 @@ export async function GET(req, res) {
 
   const prisma = new PrismaClient();
   try {
-    let result = await prisma.user.findMany({});
+    let result = await prisma.product_review.findMany({});
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {
     return NextResponse.json({ status: "fail", data: err });
   }
 }
-
-//Data store/create:(POST) localhost:3000/api/user/store
-//sample data: object
+//View list:(GET) localhost:3000/api/product_review/

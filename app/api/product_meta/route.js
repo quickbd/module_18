@@ -8,7 +8,7 @@ export async function GET(req, res) {
 
   const prisma = new PrismaClient();
   try {
-    let result = await prisma.user.findMany({});
+    let result = await prisma.product_meta.findMany({});
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {
@@ -16,5 +16,4 @@ export async function GET(req, res) {
   }
 }
 
-//Data store/create:(POST) localhost:3000/api/user/store
-//sample data: object
+//View list:(GET) localhost:3000/api/product_meta/

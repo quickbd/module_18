@@ -9,17 +9,26 @@ export async function POST(req, res) {
   const id = searchParams.get("id");
   const reqData = await req.json();
   const prisma = new PrismaClient();
-  const regdate = new Date();
+  console.log(id);
   try {
-    let result = await prisma.user.update({
+    let result = await prisma.order.update({
       where: { id: id },
       data: {
+        title: reqData.title,
+        subTotal: reqData.subTotal,
+        itemDiscount: reqData.itemDiscount,
+        tax: reqData.tax,
+        total: reqData.total,
+        discount: reqData.discount,
+        grandTotal: reqData.grandTotal,
         firstName: reqData.firstName,
+        middleName: reqData.middleName,
         lastName: reqData.lastName,
         mobile: reqData.mobile,
         email: reqData.email,
-        password: reqData.password,
-        registeredAt: regdate,
+        city: reqData.city,
+        country: reqData.country,
+        userId: reqData.userId,
       },
     });
 
@@ -29,5 +38,5 @@ export async function POST(req, res) {
   }
 }
 
-// Data update:(POST) localhost:3000/api/user/update?id=2
-// Sample data:  object
+//Data update:(POST) localhost:3000/api/order/update?id=2
+//data:{object}

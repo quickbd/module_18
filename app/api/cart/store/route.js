@@ -1,14 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function POST(req, res) {
   BigInt.prototype.toJSON = function () {
     return this.toString();
   };
 
+  const reqData = await req.json();
+
   const prisma = new PrismaClient();
   try {
-    let result = await prisma.user.findMany({});
+    let result = await prisma.cart.create({
+      data: reqData,
+    });
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {
@@ -16,5 +20,5 @@ export async function GET(req, res) {
   }
 }
 
-//Data store/create:(POST) localhost:3000/api/user/store
-//sample data: object
+// Data store/create:(POST) localhost:3000/api/cart/store
+// sample data: object

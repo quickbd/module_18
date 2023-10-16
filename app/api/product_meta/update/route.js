@@ -9,17 +9,14 @@ export async function POST(req, res) {
   const id = searchParams.get("id");
   const reqData = await req.json();
   const prisma = new PrismaClient();
-  const regdate = new Date();
+  console.log(id);
   try {
-    let result = await prisma.user.update({
+    let result = await prisma.product_meta.update({
       where: { id: id },
       data: {
-        firstName: reqData.firstName,
-        lastName: reqData.lastName,
-        mobile: reqData.mobile,
-        email: reqData.email,
-        password: reqData.password,
-        registeredAt: regdate,
+        productId: reqData.productId,
+        key: reqData.key,
+        content: reqData.content,
       },
     });
 
@@ -29,5 +26,5 @@ export async function POST(req, res) {
   }
 }
 
-// Data update:(POST) localhost:3000/api/user/update?id=2
-// Sample data:  object
+//Data update:(POST) localhost:3000/api/product_meta/update?id=2
+//data:{object}

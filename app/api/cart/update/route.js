@@ -9,17 +9,23 @@ export async function POST(req, res) {
   const id = searchParams.get("id");
   const reqData = await req.json();
   const prisma = new PrismaClient();
-  const regdate = new Date();
+  console.log(id);
   try {
-    let result = await prisma.user.update({
+    let result = await prisma.cart.update({
       where: { id: id },
       data: {
+        title: reqData.title,
+        sessionId: reqData.sessionId,
+        token: reqData.token,
+        status: reqData.status,
         firstName: reqData.firstName,
+        middleName: reqData.middleName,
         lastName: reqData.lastName,
         mobile: reqData.mobile,
         email: reqData.email,
-        password: reqData.password,
-        registeredAt: regdate,
+        city: reqData.city,
+        country: reqData.country,
+        userId: reqData.userId,
       },
     });
 
@@ -29,5 +35,5 @@ export async function POST(req, res) {
   }
 }
 
-// Data update:(POST) localhost:3000/api/user/update?id=2
-// Sample data:  object
+//Data update:(POST) localhost:3000/api/cart/update?id=2
+// sample data: object
