@@ -12,9 +12,11 @@ export async function POST(req, res) {
   console.log(reqData);
   const prisma = new PrismaClient();
   try {
-    let result = await prisma.user.create({
+    let createuser = prisma.user.create({
       data: reqData,
     });
+
+    const result = await prisma.$transaction([createuser]);
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {

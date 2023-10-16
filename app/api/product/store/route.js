@@ -11,9 +11,21 @@ export async function POST(req, res) {
 
   console.log(reqData);
   try {
-    let result = await prisma.product.create({
+    let insertProduct = prisma.product.create({
       data: reqData,
     });
+
+    let insertProductMeta = prisma.product_meta.create({
+      data: {
+        productId: insertProduct.id,
+        content: insertProduct.metaTitle,
+        key: insertProduct.slug,
+      },
+    });
+    const result = await prisma.$transaction([
+      insertProduct,
+      insertProductMeta,
+    ]);
 
     return NextResponse.json({ status: "success", result });
   } catch (err) {
